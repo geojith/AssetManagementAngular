@@ -41,6 +41,7 @@ export class AssetMasterComponent implements OnInit {
     }); 
     this.service.getAssetOrder(this.id).subscribe(res=>{
       this.purchase=res;
+      console.log(this.purchase.pd_ddate);
       this.master.am_ad_name=res["pd_ad_name"];
       this.master.am_atype_name=res["pd_type_name"];
       console.log(res["pd_vendor_name"]);

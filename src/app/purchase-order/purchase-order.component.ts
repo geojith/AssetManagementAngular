@@ -48,19 +48,19 @@ export class PurchaseOrderComponent implements OnInit {
   onOptionsSelected(value: number) {
     this.vendors = this.purchaseService.getVendors(value);
     this.vendors.subscribe(data => {
-   
-  })
+
+    })
   }
 
   searchAssetType(na: string) {
     this.assettypes = this.purchaseService.getAssettypes(na);
-    this.purchaseService.getAsset(na).subscribe(element=>{
-    console.log(element["ad_id"]);
-    this.assetId = element["ad_id"];
-  });
-     
+    this.purchaseService.getAsset(na).subscribe(element => {
+      console.log(element["ad_id"]);
+      this.assetId = element["ad_id"];
+    });
 
-  
+
+
   }
 
   addOrder() {
