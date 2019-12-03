@@ -1,0 +1,125 @@
+<h3 style="text-align: center;">Add Vendor</h3>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="create" class="nav-link" routerLinkActive="active">Asset Definition</a>
+        </li>
+        <li class="nav-item">
+            <a href="Vendor" class="nav-link" routerLinkActive="active">Vendor</a>
+        </li>
+        <li class="nav-item">
+            <a href="assetmasterlist" class="nav-link" routerLinkActive="active">Asset Master</a>
+        </li>
+        <li class="nav-item">
+            <a href="logout" class="nav-link" routerLinkActive="active" (click)="Logout()">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="Vendor" class="nav-link" routerLinkActive="active">Add Vendor</a>
+      </li>
+      <li class="nav-item">
+        <a href="Vendors" class="nav-link" routerLinkActive="active">Vendor List</a>
+    </ul>
+  </nav>
+
+
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="vendorForm" novalidate (ngSubmit)="addVendor()">
+  
+  
+        <div [ngClass]="form-group">
+          <label class="col-md-4">Vendor Name</label>
+          <input type="text" class="form-control" formControlName="vd_name" #vd_name />
+        </div>
+  
+        <div
+          *ngIf="vendorForm.controls['vd_name'].invalid && (vendorForm.controls['vd_name'].dirty || vendorForm.controls['vd_name'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="vendorForm.controls['vd_name'].errors.required">
+            Vendor Name is required.
+          </div>
+        </div>
+  
+        <br>
+  
+        <div [ngClass]="form-group">
+          <label class="col-md-4">Vendor Type</label>
+          <input type="text" class="form-control" formControlName="vd_type" #vd_type />
+        </div>
+  
+        <div
+          *ngIf="vendorForm.controls['vd_type'].invalid && (vendorForm.controls['vd_type'].dirty || vendorForm.controls['vd_type'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="vendorForm.controls['vd_type'].errors.required">
+            Vendor Type is required.
+          </div>
+        </div>
+        <br>
+        <div [ngClass]="form-group">
+          <label class="col-md-4">Asset Type</label>
+  
+          <select class="form-control" id="vd_atype_id" name="vd_atype_id" formControlName="vd_atype_id">
+            <option value="">Choose Asset Type</option>
+            <option *ngFor="let assettype of assettypes | async "value="{{assettype.at_id}}">{{assettype.at_name}}
+            </option>
+          </select>
+        </div>
+  
+        <br>
+  
+        <div [ngClass]="form-group">
+          <label class="col-md-4">Valid From</label>
+          <input type="date" class="form-control" formControlName="vd_from" #vd_from />
+          </div>
+          <div
+            *ngIf="vendorForm.controls['vd_from'].invalid && (vendorForm.controls['vd_from'].dirty || vendorForm.controls['vd_from'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="vendorForm.controls['vd_from'].errors.required">
+              From Date is required.
+            </div>
+          </div>
+
+        <br>
+
+        <div [ngClass]="form-group">
+          <label class="col-md-4">Valid To</label>
+          <input type="date" class="form-control" formControlName="vd_to" #vd_to />
+          </div>
+          <div
+            *ngIf="vendorForm.controls['vd_to'].invalid && (vendorForm.controls['vd_to'].dirty || vendorForm.controls['vd_to'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="vendorForm.controls['vd_to'].errors.required">
+              To Date is required.
+            </div>
+          </div>
+
+          <br>
+          
+          <div [ngClass]="form-group">
+            <label class="col-md-4">Vendor Address</label>
+            <input type="text" class="form-control" formControlName="vd_addr" #vd_addr />
+            </div>
+          <div
+          *ngIf="vendorForm.controls['vd_addr'].invalid && (vendorForm.controls['vd_addr'].dirty || vendorForm.controls['vd_addr'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="vendorForm.controls['vd_addr'].errors.required">
+            Vendor Address is required.
+          </div>
+        </div>
+
+        
+        <br>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="vendorForm.pristine || vendorForm.invalid">
+            Create Vendor
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

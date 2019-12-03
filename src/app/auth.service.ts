@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public Login(userInfo:Login): Observable<any>{
-    return this.http.get(this.baseUrl+'/Login_tbl?u_name='+userInfo.u_name+'&p_word='+userInfo.p_word);
+    return this.http.get(this.baseUrl+'/Logins?u_name='+userInfo.u_name+'&pwd='+userInfo.pwd);
   }
   
   public isLoggedIn()

@@ -1,0 +1,61 @@
+<div class="panel-heading">
+    <h2 style="text-align: center; color: rgb(11, 81, 122);"><b> PURCHASE MANAGER </b></h2>
+</div>
+<div class="panel-heading">
+    <h3 style="text-align: center;"><b>Purchase Order</b></h3>
+</div>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark bg-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="purchaseorder" class="nav-link" routerLinkActive="active">Purchase Order</a>
+        </li>
+        <li class="nav-item">
+            <a href="orderhistory" class="nav-link" routerLinkActive="active">Order History</a>
+        </li>
+        <li class="nav-item">
+            <a href="logout" class="nav-link" routerLinkActive="active" (click)="logout()">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="card">
+    <div class="card-body">
+
+        <form [formGroup]="purchaseForm" novalidate (ngSubmit)="updatePurchase()">
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Order Date</label>
+                <input type="date" [(ngModel)]="purchase.pd_date" readonly="true" class="form-control"
+                    formControlName="pd_date" #pd_date />
+
+            </div>
+            <div *ngIf="purchaseForm.controls['pd_date'].invalid && (purchaseForm.controls['pd_date'].dirty || purchaseForm.controls['pd_date'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="purchaseForm.controls['pd_date'].errors.required">
+                    Order Date is required.
+                </div>
+            </div>
+
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Delivery Date</label>
+                <input type="date" [(ngModel)]="purchase.pd_ddate" class="form-control" formControlName="pd_ddate"
+                    #pd_ddate />
+            </div>
+            <div *ngIf="purchaseForm.controls['pd_ddate'].invalid && (purchaseForm.controls['pd_ddate'].dirty || purchaseForm.controls['pd_ddate'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="purchaseForm.controls['pd_ddate'].errors.required">
+                    Delivery Date is required.
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="purchaseForm.pristine || purchaseForm.invalid">
+                    Consignment Recieved
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

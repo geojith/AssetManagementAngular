@@ -1,0 +1,123 @@
+
+  <div class="panel-heading">
+    <h3 style="text-align: center;"><b>Edit Vendor Details</b></h3>
+  </div>
+    
+  
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="vendorForm" novalidate (ngSubmit)="updateVendor()">
+  
+            <div class="form-group">
+                <input type="hidden" class="form-control" formControlName="vd_id" #vd_id [(ngModel)]="vendor.vd_id" />
+              </div>
+         
+              <div class="form-group">
+                  <label class="col-md-4">Vendor Name</label>
+                  <input type="text" class="form-control" value="{{ vendor.vd_name }}" formControlName="vd_name" #vd_name
+                    [(ngModel)]="vendor.vd_name" />
+                </div>
+                <div *ngIf="
+                    vendorForm.controls['vd_name'].invalid &&
+                    (vendorForm.controls['vd_name'].dirty ||
+                      vendorForm.controls['vd_name'].touched)
+                  " class="alert alert-danger">
+                  <div *ngIf="vendorForm.controls['vd_name'].errors.required">
+                    Vendor Name is required.
+                  </div>
+                </div>
+    
+          <br>
+  
+          <div class="form-group">
+              <label class="col-md-4">Vendor Type</label>
+              <input type="text" class="form-control" value="{{ vendor.vd_type }}" formControlName="vd_type" #vd_type
+                [(ngModel)]="vendor.vd_type" readonly="true" />
+            </div>
+            <div *ngIf="
+                vendorForm.controls['vd_type'].invalid &&
+                (vendorForm.controls['vd_type'].dirty ||
+                  vendorForm.controls['vd_type'].touched)
+              " class="alert alert-danger">
+              <div *ngIf="vendorForm.controls['vd_type'].errors.required">
+                Vendor Type is required.
+              </div>
+            </div>
+  
+            <div [ngClass]="form - group">
+                <label class="col-md-4">Asset Type</label>
+  
+            <select class="form-control" id="vd_atype_id" [(ngModel)]="vendor.vd_atype_id" name="vd_atype_id"
+            formControlName="vd_atype_id">
+            <option value="">Choose Asset Type</option>
+            <option *ngFor="let assettype of assettypes | async" value="{{ assettype.at_id }}">{{ assettype.at_name }}
+            </option>
+          </select>
+        </div>
+  
+        <div *ngIf="
+            vendorForm.controls['vd_atype_id'].invalid &&
+            (vendorForm.controls['vd_atype_id'].dirty ||
+              vendorForm.controls['vd_atype_id'].touched)
+          " class="alert alert-danger">
+          <div *ngIf="vendorForm.controls['vd_atype_id'].errors.required">
+            Asset Type is required.
+          </div>
+        </div>
+  
+    
+        <div class="form-group">
+            <label class="col-md-4">Vendor Address</label>
+            <input type="text" class="form-control" value="{{ vendor.vd_addr }}" formControlName="vd_addr" #vd_addr
+              [(ngModel)]="vendor.vd_addr" />
+          </div>
+          <div *ngIf="
+              vendorForm.controls['vd_addr'].invalid &&
+              (vendorForm.controls['vd_addr'].dirty ||
+                vendorForm.controls['vd_addr'].touched)
+            " class="alert alert-danger">
+            <div *ngIf="vendorForm.controls['vd_addr'].errors.required">
+              Vendor Address is required.
+            </div>
+          </div>
+  
+  
+          <div class="form-group">
+              <label class="col-md-4">Valid From</label>
+              <input type="date" class="form-control" value="{{ vendor.vd_fromStr }}" formControlName="vd_from" #vd_from
+                [(ngModel)]="vendor.vd_fromStr" />
+            </div>
+            <div *ngIf="
+                vendorForm.controls['vd_from'].invalid &&
+                (vendorForm.controls['vd_from'].dirty ||
+                  vendorForm.controls['vd_from'].touched)
+              " class="alert alert-danger">
+              <div *ngIf="vendorForm.controls['vd_from'].errors.required">
+                Valid From Date is required.
+              </div>
+            </div>
+  
+  
+            <div class="form-group">
+                <label class="col-md-4">Valid To</label>
+                <input type="date" class="form-control" value="{{ vendor.vd_toStr }}" formControlName="vd_to" #vd_to
+                  [(ngModel)]="vendor.vd_toStr" />
+              </div>
+              <div *ngIf="
+                  vendorForm.controls['vd_to'].invalid &&
+                  (vendorForm.controls['vd_to'].dirty ||
+                    vendorForm.controls['vd_to'].touched)
+                " class="alert alert-danger">
+                <div *ngIf="vendorForm.controls['vd_to'].errors.required">
+                  Valid To Date is required.
+                </div>
+              </div>   
+    
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary" [disabled]="vendorForm.invalid">
+                Update Vendor
+              </button>
+          </div>
+        </form>
+      </div>
+    </div>

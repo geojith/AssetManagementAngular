@@ -8,37 +8,48 @@ import { AssetDef } from './asset-def';
 })
 export class AssetDefService {
 
-  private baseUrl= 'http://localhost:62618/api';
+  private baseUrl = 'http://localhost:62618/api';
 
   constructor(private http: HttpClient) { }
 
-  getAssetList(): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_def');
+  getAssetList(): Observable<any> {
+    return this.http.get(this.baseUrl + '/Asset_def');
   }
 
 
-  deleteAsset(id: number): Observable<any>{
-    return this.http.delete(this.baseUrl+'/Asset_def/'+id);
+  deleteAsset(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + '/Asset_def/' + id);
   }
 
-  addAsset(asset: AssetDef){
-    return this.http.post(this.baseUrl+'/Asset_def',asset);
-  }
-  
-  getAsset_def(name: string): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_def?na='+name);
+  addAsset(asset: AssetDef) {
+    return this.http.post(this.baseUrl + '/Asset_def', asset);
   }
 
-  putAsset_def(id:number, asset: AssetDef): Observable<any>{
-    return this.http.put(this.baseUrl+'/Asset_def/'+ id, asset);
+  getAsset_def(name: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/Asset_def?na=' + name);
   }
 
-  getAssetType(id: number): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_type/'+id);
+  putAsset_def(id: number, asset: AssetDef): Observable<any> {
+    return this.http.put(this.baseUrl + '/Asset_def/' + id, asset);
   }
 
-  getAssetTypes(): Observable<any>{
-    return this.http.get(this.baseUrl+'/Asset_type');
+  getAssetType(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/Asset_type/' + id);
   }
 
+  getAssetTypes(): Observable<any> {
+    return this.http.get(this.baseUrl + '/Asset_type');
+  }
+
+  GetAsset(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/Asset_def/' + id);
+  }
+
+  UpdateAsset(id: number, asset: AssetDef) {
+    return this.http.put(this.baseUrl + '/Asset_def/' + id, asset);
+  }
+
+  searchAsset(name: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/assets?name=' + name);
+  }
 }
